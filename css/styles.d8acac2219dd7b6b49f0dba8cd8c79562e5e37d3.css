@@ -1,0 +1,117 @@
+:root {
+    --text-color: rgba(255, 255, 255, 0.87);
+    --text-medium-color: rgba(255, 255, 255, 0.6);
+    --background-color: #121212;
+    --background-e1: rgba(255, 255, 255, 0.07);
+    --color-p1: rgb(55, 151, 250);
+    --color-p2:  rgb(207, 102, 102);
+}
+
+html, body, #app { height: 100%; margin: 0;; padding: 0;; }
+
+body {
+    background-color: var(--background-color);
+    overscroll-behavior-y: contain;
+    user-select: none;
+}
+
+.board-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.status-bar {
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+.status-bar svg {
+    width: 1rem;
+    vertical-align: middle;
+    background-color: var(--text-color);
+    padding: 0.1rem;
+}
+
+.board {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    aspect-ratio: 1;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    flex-grow: 1;
+    gap: 0.1rem;
+    height: 0;
+}
+
+.cell {
+    flex-grow: 1;
+}
+
+.cell-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.cell button {
+    flex-grow: 1;
+    border: none;
+    width: 0;
+    background-color: var(--text-color);
+}
+
+.player-p1 {
+    stroke: var(--color-p1);
+}
+.player-p2 {
+    stroke: var(--color-p2);
+    fill: none;
+}
+
+.cell-btn.player-p1 {
+    color: var(--color-p1);
+}
+.cell-btn.player-p1.dead {
+    background-color: var(--color-p2);
+}
+.cell-btn.player-p2 {
+    color: var(--color-p2);
+}
+.cell-btn.player-p2.dead {
+    background-color: var(--color-p1);
+}
+
+.game {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+a {
+    font-size: 1.2rem;
+    color: var(--text-medium-color);
+}
+
+.rules-link {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.app-version {
+    user-select: text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;;
+    text-align: center;
+    color: var(--text-medium-color);
+}
