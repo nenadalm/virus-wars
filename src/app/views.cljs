@@ -49,7 +49,10 @@
         [:div
          "Active player: " [player-symbol active-player]]
         [:div
-         "Moves: " moves]])
+         "Moves: " moves]
+        [:button
+         {:on-click #(re-frame/dispatch [::events/reset])}
+         "Reset"]])
      [:div.rules-link
       [:a
        {:href "http://www.papg.com/show?5SB0"}
