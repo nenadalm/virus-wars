@@ -66,7 +66,8 @@
         cell (get-in game [:board x y])]
     (when (self-adjacent? game x y)
       (if cell
-        (when-not (= (:player cell) active-player)
+        (when (and (:live cell)
+                   (not= (:player cell) active-player))
           :kill)
         :take))))
 
