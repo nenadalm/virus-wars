@@ -18,18 +18,17 @@
       {:cx 25 :cy 25 :r 22 :stroke-width "3px"}]]))
 
 (defn- cell [data x y]
-  [:div.cell
-   [:div.cell-content
-    [:button.cell-btn
-     {:on-click #(re-frame/dispatch [::events/play x y])
-      :class (when data
-               [(str "player-" (name (:player data)))
-                (if (:live data) "live" "dead")])}
-     (when data
-       [player-symbol (:player data)])]]])
+  [:div.item
+   [:button.cell-btn
+    {:on-click #(re-frame/dispatch [::events/play x y])
+     :class (when data
+              [(str "player-" (name (:player data)))
+               (if (:live data) "live" "dead")])}
+    (when data
+      [player-symbol (:player data)])]])
 
 (defn- game-row [row row-index]
-  [:div.row
+  [:<>
    (for [col-index (range (count row))]
      ^{:key col-index} [cell (get row col-index) row-index col-index])])
 
@@ -39,20 +38,22 @@
         app-info @(re-frame/subscribe [::subs/app-info])]
     [:div.status-bar
      (if winner
-       [:<>
-        "Winner: " [player-symbol winner]
-        [:br]
-        [:button
-         {:on-click #(re-frame/dispatch [::events/reset])}
-         "Reset"]]
-       [:<>
+       [:div.status-bar--status
+        [:div
+         "Winner: " [player-symbol winner]]
+        [:div.status-bar--actions
+         [:button
+          {:on-click #(re-frame/dispatch [::events/reset])}
+          "Reset"]]]
+       [:div.status-bar--status
         [:div
          "Active player: " [player-symbol active-player]]
         [:div
          "Moves: " moves]
-        [:button
-         {:on-click #(re-frame/dispatch [::events/reset])}
-         "Reset"]])
+        [:div.status-bar--actions
+         [:button
+          {:on-click #(re-frame/dispatch [::events/reset])}
+          "Reset"]]])
      [:div.rules-link
       [:a
        {:href "http://www.papg.com/show?5SB0"}
@@ -63,10 +64,11 @@
 (defn- game []
   (let [board @(re-frame/subscribe [::subs/board])]
     [:div.game
-     [:div.board-container
-      [:div.board
-       (for [row-index (range (count board))]
-         ^{:key row-index} [game-row (get board row-index) row-index])]]
+     [:div.square-box
+      [:div.square
+       [:div.board
+        (for [row-index (range (count board))]
+          ^{:key row-index} [game-row (get board row-index) row-index])]]]
      [status-bar]]))
 
 (defn app []
