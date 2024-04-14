@@ -1,4 +1,4 @@
-const relatedAppVersion = "ca670f6ac97ceae29412693438a54f75b4e19ac0";
+const relatedAppVersion = "d62656d8005536dc0d0608fb63159090f2aeecad";
 const urlsToCache = ["index.html","manifest.json","img/icon.svg","js/app.D5DCD9218B8BE6DF5080A2893B9C20B6.js","css/styles.112cb8a7fbefbc414fce843ac5e43bb4cfdf9b42.css"];
 
 const cacheKeyPrefix = 'nenadalm.virus-wars.';
